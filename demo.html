@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Preinscripciones | Fundación CIDCA</title>
+    <meta name="description" content="Preinscripciones | Fundación CIDCA" />
+    <meta name="keywords" content="Preinscripciones, Fundación CIDCA, admisiones" />
+    <meta name="author" content="Peter Finlan and Taty Grassini Codrops | John Fandiño" />
+    <link rel="shortcut icon" href="img/favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#9C0D15">
+    <meta name="theme-color" content="#9C0D15">
+    <link rel="stylesheet" href="css/landio.css">
+  </head>
+
+  <body>
+    <!-- Navegación
+    ================================================== -->
+    <nav id="totop" class="navbar navbar-dark bg-inverse bg-inverse-custom navbar-fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <span class="icon-cidca"></span>
+          <span class="sr-only">Fundación CIDCA</span>
+        </a>
+        <a class="navbar-toggler hidden-md-up pull-xs-right" data-toggle="collapse" href="#collapsingNavbar" aria-expanded="false" aria-controls="collapsingNavbar">
+        &#9776;
+      </a>
+        
+        <div id="collapsingNavbar" class="collapse navbar-toggleable-custom" role="tabpanel" aria-labelledby="collapsingNavbar">
+          <ul class="nav navbar-nav pull-xs-right">
+            <li class="nav-item nav-item-toggable active">
+              <a class="nav-link" href="#programasOfertados">Programas ofertados</a>
+            </li>
+            <li class="nav-item nav-item-toggable">
+              <a class="nav-link" href="#beneficios">Beneficios</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Formulario
+    ================================================== -->
+    <!-- <header id="landioCarousel" class="carousel carousel-header slide bg-inverse" data-ride="carousel" data-interval="0" role="banner"> -->
+    <header id="landioCarousel" class="carousel-header jumbotron bg-inverse text-xs-center center-vertically" role="banner">
+      <div class="carousel-inner" role="listbox">
+        <div class="carousel-item active" style="">
+          <!-- <div class="carousel-item active"> -->
+          <div class="carousel-caption">
+            <div class="grilla">
+              <div class="celda">
+                <h1 class="title-preinscripcion">INSCRIPCIONES ABIERTAS 2019</h1>
+                <p class="txt-preinscripcion">Hola. Los datos básicos que diligenciarás, son unicamente para poder contactarte y poder guiarte en cualquier duda o información que necesites. La oficina de Admisiones es tu primer contacto con la Fundación CIDCA, por ello estamos prestos a apoyarte en este proceso, un Asesor Educativo se pondrá en contacto contigo.</p>
+                <?php 
+                  if (isset($_SESSION['exitoMsj'])) {
+                    print $_SESSION['exitoMsj'];
+                  }
+                ?>
+              </div>
+            </div>
+            <form action="#" class="formPreinscribete" method="POST">
+              <p>Los campos con <b style="color: red">*</b> son obligatorios.</p>
+              <div class="grilla">
+                <div class="celda celdax4">
+                  <span class="<?php print $ClassErrorNombre; ?>"><?php print $msjNombre ?></span>
+                  <input type="text" name="nombre" id="nombre" value="<?php print $nombre?>" placeholder="(*) Nombres" >
+                </div>
+                <div class="celda celdax4">
+                  <span class="<?php print $ClassErrorApellido; ?>"><?php print $msjApellido ?></span>
+                  <input type="text" name="apellido" id="apellido" value="<?php print $apellido?>" placeholder="(*) Apellidos" >
+                </div>
+                <div class="celda celdax4">
+                  <span class="<?php print $ClassErrorNumeroDocumento; ?>"><?php print $msjNumeroDocumento ?></span>
+                  <input type="text" name="numero_documento" id="numero_documento" value="<?php print $numero_documento?>" placeholder="(*) No. Documento" >
+                </div>
+                <div class="celda celdax4">
+                  <span class="<?php print $ClassErrorEmail ?>"><?php print $msjEmail ?></span>
+                  <input type="text"  id="email" name="email"  value="<?php print $email ?>" placeholder="(*) Email" >
+                </div>
+              </div>
+              <div class="grilla">                
+                <div class="celda celdax4">
+                  <span class="<?php print $ClassErrorCelular ?>"><?php print $msjCelular ?></span>
+                  <input type="text" name="celular" id="celular" value="<?php print $celular ?>" placeholder="(*) No. Celular" >
+                </div>
+                <div class="celda celdax4">
+                  <span class="<?php print $ClassErrorTelFijo ?>"><?php print $msjTelFijo ?></span>
+                  <input type="text" name="telefono_fijo" id="telefono_fijo" value="<?php print $telefono_fijo ?>" placeholder="No. Telefono Fijo">
+                </div>
+                <div class="celda celdax4">
+                  <span class="<?php print $ClassErrorCiudad ?>"><?php print $msjCiudad ?></span>
+                  <select name="detalle_ciudad" id="detalle_ciudad" >
+                    <option value="" disabled selected>Ciudad en la que quiere estudiar</option>
+                    <?php while($result_cidudad=mysql_fetch_array($res_detalle_ciudad)){ ?>
+                    <option value="<?php print $result_cidudad['detalle_ciudad'] ?>"><?php print $result_cidudad['detalle_ciudad'] ?></option>
+                    <?php } ?>
+                  </select>
+                </div>
+                <div class="celda celdax4">
+                  <span class="<?php print $ClassErrorPrograma ?>"><?php print $msjPrograma ?></span>
+                  <select name="detalle_programa" id="detalle_programa" >
+                    <option value="" disabled selected>Programa que desea cursar</option>
+                    <?php while($result_detalle_programa=mysql_fetch_array($res_detalle_programa)){ ?>
+                    <option value="<?php print $result_detalle_programa['detalle_programa'] ?>"><?php print $result_detalle_programa['detalle_programa'] ?></option>
+                    <?php } ?>
+                  </select>
+                </div>
+              </div>
+              <div class="grilla">
+                <div class="celda celdax3">
+                  <span class="<?php print $ClassErrorMedio ?>"><?php print $msjMedio ?></span>
+                  <select name="detalle_medio" id="detalle_medio">
+                    <option value="" disabled selected>¿Por que medio se entero?</option>
+                    <?php while($result_detalle_medio=mysql_fetch_array($res_detalle_medio)){ ?>
+                    <option value="<?php print $result_detalle_medio['detalle_medio'] ?>"><?php print $result_detalle_medio['detalle_medio'] ?></option>
+                    <?php } ?>
+                  </select>
+                </div>
+                <div class="celda celdax3">
+                  <span class="<?php print $ClassErrorNombreReferido ?>"><?php print $msjNombreReferido ?></span>
+                  <input type="text" name="nombre_de_referido" id="nombre_de_referido" value="<?php print $nombre_de_referido ?>" placeholder=" Nombre de quien lo refiere">
+                </div>
+                <div class="celda celdax3">
+                  <span class="<?php print $ClassErrorCCReferido ?>"><?php print $msjCCReferido ?></span>
+                  <input type="text" name="ccreferido" id="ccreferido" value="<?php print $ccreferido ?>" placeholder="No. Cedula de quien lo refiere">
+                </div>
+              </div>
+              <div class="grilla">
+                <div class="celda"><input class="boton" type="submit" value="Enviar"></div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Intro
+    ================================================== -->
+    <section class="section-intro bg-faded text-xs-center">
+      <div class="container">
+        <h3 class="wp wp-1">Visitanos en nuestro <a href="../">web site principal</a></h3>
+        <p class="lead wp wp-2">¡En CIDCA hacemos nuestros, tus propósitos!</p>
+        <img src="img/mock.png" alt="iPad mock" class="img-fluid wp wp-3">
+      </div>
+    </section>
+
+    <!-- Programas Ofertados
+    ================================================== -->
+    <section id="programasOfertados" class="section-pricing bg-faded text-xs-center">
+      <div class="container">
+        <h3>Nuestros programas ofertados</h3>
+        <div class="row p-y-3">
+          <div class="col-md-4 p-t-md wp wp-5">
+            <div class="card pricing-box">
+              <div class="card-header text-uppercase">
+                Pereria
+              </div>
+              <ul class="list-group list-group-flush p-x">
+                <li class="list-group-item"><a href="" target="_blank">Tecnología en Finanzas y Sistemas Contables</a></li>
+                <li class="list-group-item"><a href="" target="_blank">Tecnología en Gestión de Producción y Calidad</a></li>
+                <li class="list-group-item"><a href="" target="_blank">Tecnicá Profesional en Operaciones Aduaneras</a></li>
+              </ul>
+              <a href="#" class="btn btn-primary-outline">Solicitar información</a>
+            </div>
+          </div>
+          <div class="col-md-4 stacking-top">
+            <div class="card pricing-box pricing-best p-x-0">
+              <div class="card-header text-uppercase">
+                Bogotá
+              </div>
+              <ul class="list-group list-group-flush p-x">
+                <li class="list-group-item"><a href="" target="_blank">Tecnicá Profesional en Procesos Organizacionales</a></li>
+                <li class="list-group-item"><a href="" target="_blank">Tecnología en Gestión de Sistemas Electromecánicos</a></li>
+                <li class="list-group-item"><a href="" target="_blank">Tecnología en Gestión de Sistemas Mecatrónicos</a></li>
+                <li class="list-group-item"><a href="" target="_blank">Tecnología en Seguridad Informatica</a></li>
+                <li class="list-group-item"><a href="" target="_blank">Tecnicá Profesional en Operaciones Aduaneras</a></li>
+                <li class="list-group-item"><a href="" target="_blank">Tecnología en Gestión de la Producción y Calidad</a></li>
+                <li class="list-group-item"><a href="" target="_blank">Tecnología en Finanzas y Sistemas Contables</a></li>
+                <li class="list-group-item"><a href="" target="_blank">Tecnología en Desarrollo de Sistemas Informáticos</a></li>
+                <li class="list-group-item"><a href="" target="_blank">Tecnología en Servicios de Teleconmunicaciones</a></li>
+              </ul>
+              <a href="#" class="btn btn-primary">Solicitar información</a>
+            </div>
+          </div>
+          <div class="col-md-4 p-t-md wp wp-6">
+            <div class="card pricing-box">
+              <div class="card-header text-uppercase">
+                Villavicencio
+              </div>
+              <ul class="list-group list-group-flush p-x">
+                <li class="list-group-item"><a href="" target="_blank">Tecnicá Profesional en Mantenimiento Electromecánico</a></li>
+              </ul>
+              <a href="#" class="btn btn-primary-outline">Solicitar información</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Beneficios
+    ================================================== -->
+    <section id="beneficios" class="section-testimonials text-xs-center bg-inverse">
+      <div class="container">
+        <h3 class="sr-only">Testimonials</h3>
+        <div id="carousel-testimonials" class="carousel slide" data-ride="carousel" data-interval="0">
+          <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+              <blockquote class="blockquote">
+                <img src="img/face1.jpg" height="80" width="80" alt="Avatar" class="img-circle">
+                <p class="h3">Financiación sin interes</p>
+              </blockquote>
+            </div>
+            <div class="carousel-item">
+              <blockquote class="blockquote">
+                <img src="img/face2.jpg" height="80" width="80" alt="Avatar" class="img-circle">
+                <p class="h3">Estudiar un carrera profesional con precios asequibles</p>
+              </blockquote>
+            </div>
+            <div class="carousel-item">
+              <blockquote class="blockquote">
+                <img src="img/face3.jpg" height="80" width="80" alt="Avatar" class="img-circle">
+                <p class="h3">Laboratorios innovadores</p>
+              </blockquote>
+            </div>
+            <div class="carousel-item">
+              <blockquote class="blockquote">
+                <img src="img/face4.jpg" height="80" width="80" alt="Avatar" class="img-circle">
+                <p class="h3">Practicas empresariales a partir de tu segundo semestre</p>
+              </blockquote>
+            </div>
+            <div class="carousel-item">
+              <blockquote class="blockquote">
+                <img src="img/face5.jpg" height="80" width="80" alt="Avatar" class="img-circle">
+                <p class="h3">Presencia en tres ciudades de colombia</p>
+              </blockquote>
+            </div>
+          </div>
+          <ol class="carousel-indicators">
+            <li class="active"><img src="img/1.png" alt="Navigation avatar" data-target="#carousel-testimonials" data-slide-to="0" class="img-fluid img-circle"></li>
+            <li><img src="img/2.png" alt="Navigation avatar" data-target="#carousel-testimonials" data-slide-to="1" class="img-fluid img-circle"></li>
+            <li><img src="img/3.png" alt="Navigation avatar" data-target="#carousel-testimonials" data-slide-to="2" class="img-fluid img-circle"></li>
+            <li><img src="img/4.png" alt="Navigation avatar" data-target="#carousel-testimonials" data-slide-to="3" class="img-fluid img-circle"></li>
+            <li><img src="img/5.png" alt="Navigation avatar" data-target="#carousel-testimonials" data-slide-to="4" class="img-fluid img-circle"></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer
+    ================================================== -->
+    <footer class="section-footer bg-inverse" role="contentinfo">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-lg-5">
+            <div class="media">
+              <div class="media-left">
+                <span class="media-object icon-logo display-1"></span>
+              </div>
+              <small class="media-body media-bottom">
+                <br>
+                &copy; Fundación CIDCA 2018.
+                </small>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-7">
+            <ul class="nav nav-inline">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Preinscripción</a>
+              </li>
+              <li class="nav-item"><a class="nav-link" href="#programasOfertados">Programas ofertados</a></li>
+              <li class="nav-item"><a class="nav-link" href="#beneficios">Beneficios</a></li>
+              <li class="nav-item"><a class="nav-link scroll-top" href="#totop">Regresar arriba <span class="icon-arrow-up"></span></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/landio.min.js"></script>
+  </body>
+</html>
